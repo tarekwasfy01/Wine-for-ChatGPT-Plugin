@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portable Wine Runner – Wine als portables Skill-Plugin für ChatGPT und Codex.">
+  <title>Portable Wine Runner</title>
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1728;
+      --card: #101d31;
+      --text: #f5f7fb;
+      --muted: #a8b4c6;
+      --blue: #4c8dff;
+      --blue2: #6aa8ff;
+      --border: rgba(255,255,255,.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(76,141,255,.16), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--blue2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(7,17,31,.78);
+      backdrop-filter: blur(18px);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: white;
+      font-size: 1.05rem;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .navlinks a {
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 110px 0 80px;
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid rgba(76,141,255,.4);
+      background: rgba(76,141,255,.09);
+      color: #a9caff;
+      border-radius: 100px;
+      padding: 6px 13px;
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(2.8rem, 7vw, 5.7rem);
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 19px;
+      border-radius: 9px;
+      font-weight: 700;
+      background: var(--blue);
+      color: white;
+    }
+
+    .button.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding-bottom: 90px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    section.content {
+      border-top: 1px solid var(--border);
+      padding: 75px 0;
+    }
+
+    section.content h2 {
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    section.content p {
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    code {
+      background: #02070d;
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 30px 0 45px;
+      font-size: .9rem;
+    }
+
+    .footerlinks {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 780px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        align-items: flex-start;
+        padding: 18px 0;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 75px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="index.html">Portable Wine Runner</a>
+
+      <div class="navlinks">
+        <a href="index.html">Plugin</a>
+        <a href="privacy.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container">
+    <section class="hero">
+
+      <span class="badge">Wine für ChatGPT &amp; Codex</span>
+
+      <h1>Windows-Programme direkt ausführen.</h1>
+
+      <p class="lead">
+        Portable Wine Runner ist ein Skill-Plugin, das eine portable Wine-Laufzeitumgebung
+        bereitstellt. Dadurch können kompatible Windows-Programme in geeigneten
+        Linux-Umgebungen ausgeführt und getestet werden, ohne Wine jedes Mal vollständig
+        neu einrichten zu müssen.
+      </p>
+
+      <div class="buttons">
+        <a class="button"
+           href="https://github.com/tarekwasfy01/Wine-for-ChatGPT-Plugin">
+          GitHub Repository
+        </a>
+
+        <a class="button secondary" href="#about">
+          Mehr erfahren
+        </a>
+      </div>
+
+    </section>
+
+    <section class="grid">
+
+      <article class="card">
+        <h2>Prebuilt Wine</h2>
+        <p>
+          Eine vorbereitete Wine-Runtime ermöglicht einen schnellen Start ohne
+          vollständige Kompilierung der Wine-Quellen.
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Build-Fallback</h2>
+        <p>
+          Wenn die vorbereitete Runtime auf einem System nicht funktioniert,
+          kann der Skill Wine aus den mitgelieferten Quellen neu bauen.
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Kein eigener Server</h2>
+        <p>
+          Das Plugin ist als lokaler Skill aufgebaut und benötigt keinen eigenen
+          MCP-Webserver oder externen Backend-Dienst.
+        </p>
+      </article>
+
+    </section>
+  </div>
+
+  <section class="content" id="about">
+    <div class="container">
+
+      <h2>Was macht das Plugin?</h2>
+
+      <p>
+        ChatGPT oder Codex kann den Skill verwenden, wenn eine Windows-EXE in einer
+        unterstützten lokalen Linux-Umgebung ausgeführt oder überprüft werden soll.
+        Der Skill stellt dafür Wine und die notwendigen Startskripte bereit.
+      </p>
+
+      <p>
+        Die vorbereitete Runtime wird bevorzugt verwendet. Falls sie mit der
+        jeweiligen Umgebung nicht kompatibel ist, kann auf den Build-Fallback
+        zurückgegriffen werden.
+      </p>
+
+      <p>
+        Wine ist ein unabhängiges Open-Source-Projekt. Dieses Plugin ist kein
+        offizielles Produkt des Wine-Projekts und kein offizielles Produkt von OpenAI.
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>Portable Wine Runner</strong><br>
+    Ein Open-Source-Projekt von Tarek Wasfy.
+
+    <div class="footerlinks">
+      <a href="privacy.html">Datenschutz</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="mailto:tarekwasfy01@gmail.com">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
