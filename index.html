@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,7 +10,6 @@
   <style>
     :root {
       --bg: #07111f;
-      --bg2: #0b1728;
       --card: #101d31;
       --text: #f5f7fb;
       --muted: #a8b4c6;
@@ -169,25 +169,24 @@
       max-width: 760px;
     }
 
-    code {
-      background: #02070d;
-      border: 1px solid var(--border);
-      padding: 2px 6px;
-      border-radius: 5px;
-    }
-
     footer {
       border-top: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
       color: var(--muted);
-      padding: 30px 0 45px;
-      font-size: .9rem;
+      padding: 38px 0 45px;
+      font-size: .92rem;
     }
 
     .footerlinks {
       display: flex;
-      gap: 18px;
+      gap: 20px;
       flex-wrap: wrap;
-      margin-top: 8px;
+      margin-top: 16px;
+    }
+
+    .footerlinks a {
+      font-weight: 700;
+      color: var(--blue2);
     }
 
     @media (max-width: 780px) {
@@ -311,16 +310,20 @@
 
 <footer>
   <div class="container">
-    <strong>Portable Wine Runner</strong><br>
-    Ein Open-Source-Projekt von Tarek Wasfy.
+    <strong>Portable Wine Runner</strong>
+    <p>Ein Open-Source-Projekt von Tarek Wasfy.</p>
 
     <div class="footerlinks">
-      <a href="privacy.html">Datenschutz</a>
+      <a href="privacy.html">Datenschutzerklärung</a>
       <a href="impressum.html">Impressum</a>
-      <a href="mailto:tarekwasfy01@gmail.com">Kontakt</a>
     </div>
+
+    <p style="margin-top: 22px;">
+      © 2026 Tarek Wasfy
+    </p>
   </div>
 </footer>
 
 </body>
 </html>
+```
