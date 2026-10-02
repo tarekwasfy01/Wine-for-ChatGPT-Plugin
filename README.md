@@ -17,3 +17,16 @@ The package contains the technical plugin metadata and icon. Public submission s
 
 - Project: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/
 - Privacy / Support / Terms: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html
+
+
+## Marketplace installation
+
+1. Add this repository as a custom plugin marketplace.
+2. The marketplace manifest is located at `.agents/plugins/marketplace.json`.
+3. Install **Portable Wine Runner** from the marketplace.
+4. The marketplace entry points to the stable **v1.0.4** release of this repository.
+5. After installation, the bundled Wine runtime can be used to run supported Windows x64 executables in compatible local ChatGPT/Codex environments.
+
+Repository: https://github.com/tarekwasfy01/Wine-for-ChatGPT-Plugin
+
+Current marketplace plugin version: **v1.0.4**
