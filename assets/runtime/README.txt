@@ -1,2 +1,3 @@
-The previously bundled prebuilt Wine runtime was removed because it was incomplete.
-The plugin now builds Wine 11.0 from the bundled source archives via scripts/build-wine.sh.
+Portable Wine 11 x64 runtime bundled for plugin version 1.0.3.
+The archive is extracted by scripts/ensure-wine.sh into the plugin cache.
+A source-build fallback remains available from assets/sources/.

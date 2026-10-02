@@ -2,32 +2,37 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CACHE_BASE="${XDG_CACHE_HOME:-${HOME:-/tmp}/.cache}/portable-wine-runner"
-RUNTIME="$CACHE_BASE/runtime-v1"
-ARCHIVE="$ROOT/assets/runtime/wine-10-x64-runtime.tar.xz"
+RUNTIME="$CACHE_BASE/runtime-v2"
+ARCHIVE="$ROOT/assets/runtime/wine-11-x64-runtime-v1.0.3.tar.xz"
 FORCE_BUILD=0
 [[ "${1:-}" == "--build" ]] && FORCE_BUILD=1
 mkdir -p "$CACHE_BASE"
 
-pick_wine() {
-  if [[ -x "$1/bin/wine64" ]]; then printf '%s\n' "$1/bin/wine64"; return 0; fi
-  if [[ -x "$1/bin/wine" ]]; then printf '%s\n' "$1/bin/wine"; return 0; fi
-  return 1
+runtime_bin() {
+  if [[ -x "$RUNTIME/bin/wine64" ]]; then
+    printf '%s\n' "$RUNTIME/bin/wine64"
+  elif [[ -x "$RUNTIME/bin/wine" ]]; then
+    printf '%s\n' "$RUNTIME/bin/wine"
+  else
+    return 1
+  fi
 }
 
-if [[ $FORCE_BUILD -eq 0 && -f "$ARCHIVE" ]]; then
-  WINE_BIN="$(pick_wine "$RUNTIME" 2>/dev/null || true)"
-  if [[ -z "$WINE_BIN" ]]; then
+# Try the bundled runtime first. If the archive is damaged/incomplete, fall back to
+# rebuilding Wine from the bundled source archives instead of aborting the plugin.
+if [[ $FORCE_BUILD -eq 0 ]]; then
+  if ! runtime_bin >/dev/null 2>&1; then
     rm -rf "$RUNTIME.tmp"
     mkdir -p "$RUNTIME.tmp"
-    if tar -xJf "$ARCHIVE" -C "$RUNTIME.tmp" >/dev/null 2>&1; then
+    if tar -xJf "$ARCHIVE" -C "$RUNTIME.tmp" 2>/dev/null; then
       rm -rf "$RUNTIME"
       mv "$RUNTIME.tmp" "$RUNTIME"
-      WINE_BIN="$(pick_wine "$RUNTIME" 2>/dev/null || true)"
     else
-      rm -rf "$RUNTIME.tmp"
+      rm -rf "$RUNTIME.tmp" "$RUNTIME"
     fi
   fi
-  if [[ -n "${WINE_BIN:-}" ]]; then
+
+  if WINE_BIN="$(runtime_bin 2>/dev/null)"; then
     export WINEDLLPATH="$RUNTIME/lib/wine/x86_64-unix:$RUNTIME/lib/wine/x86_64-windows${WINEDLLPATH:+:$WINEDLLPATH}"
     if "$WINE_BIN" --version >/dev/null 2>&1; then
       printf '%s\n' "$WINE_BIN"

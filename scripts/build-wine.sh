@@ -8,7 +8,7 @@ PREFIX="$CACHE_BASE/source-built"
 mkdir -p "$SRC" "$BUILD"
 
 need(){ command -v "$1" >/dev/null 2>&1 || { echo "missing required host tool: $1" >&2; exit 127; }; }
-need tar; need make; need cc
+need tar; need make; need cc; need python3
 
 build_flex(){
   if command -v flex >/dev/null 2>&1; then command -v flex; return; fi
