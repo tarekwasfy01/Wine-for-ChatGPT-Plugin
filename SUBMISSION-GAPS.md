@@ -1,12 +1,12 @@
-# Public submission fields still requiring publisher input
+# Submission status
 
-The ZIP is structurally prepared as a skills-only plugin. The following public-listing facts must be supplied by the publisher and cannot be invented by the package authoring process:
+The plugin package now includes the following public listing URLs:
 
-- verified developer/publisher identity
-- public website URL
-- public support URL
-- published privacy-policy URL
-- published terms-of-service URL
-- intended publication countries, if the submission flow requires an explicit selection
+- Website: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/
+- Support: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html
+- Privacy policy: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html
+- Terms of service: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html
 
-Skills-only plugins do not require MCP review cases, demo recording, or reviewer credentials.
+## Note
+
+Support, privacy, and terms currently point to the same published page as requested. For public review, the page should visibly contain the information appropriate to each declared purpose; a reviewer may require dedicated Support or Terms content if the shared page does not clearly provide it.

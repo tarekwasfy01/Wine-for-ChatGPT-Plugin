@@ -8,20 +8,31 @@ FORCE_BUILD=0
 [[ "${1:-}" == "--build" ]] && FORCE_BUILD=1
 mkdir -p "$CACHE_BASE"
 
-# Prefer an already-working unpacked prebuilt runtime. Do not prefer random system Wine;
-# this keeps behavior reproducible across plugin runs.
-if [[ $FORCE_BUILD -eq 0 ]]; then
-  if [[ ! -x "$RUNTIME/bin/wine64" ]]; then
+pick_wine() {
+  if [[ -x "$1/bin/wine64" ]]; then printf '%s\n' "$1/bin/wine64"; return 0; fi
+  if [[ -x "$1/bin/wine" ]]; then printf '%s\n' "$1/bin/wine"; return 0; fi
+  return 1
+}
+
+if [[ $FORCE_BUILD -eq 0 && -f "$ARCHIVE" ]]; then
+  WINE_BIN="$(pick_wine "$RUNTIME" 2>/dev/null || true)"
+  if [[ -z "$WINE_BIN" ]]; then
     rm -rf "$RUNTIME.tmp"
     mkdir -p "$RUNTIME.tmp"
-    tar -xJf "$ARCHIVE" -C "$RUNTIME.tmp"
-    rm -rf "$RUNTIME"
-    mv "$RUNTIME.tmp" "$RUNTIME"
+    if tar -xJf "$ARCHIVE" -C "$RUNTIME.tmp" >/dev/null 2>&1; then
+      rm -rf "$RUNTIME"
+      mv "$RUNTIME.tmp" "$RUNTIME"
+      WINE_BIN="$(pick_wine "$RUNTIME" 2>/dev/null || true)"
+    else
+      rm -rf "$RUNTIME.tmp"
+    fi
   fi
-  export WINEDLLPATH="$RUNTIME/lib/wine/x86_64-unix:$RUNTIME/lib/wine/x86_64-windows${WINEDLLPATH:+:$WINEDLLPATH}"
-  if "$RUNTIME/bin/wine64" --version >/dev/null 2>&1; then
-    printf '%s\n' "$RUNTIME/bin/wine64"
-    exit 0
+  if [[ -n "${WINE_BIN:-}" ]]; then
+    export WINEDLLPATH="$RUNTIME/lib/wine/x86_64-unix:$RUNTIME/lib/wine/x86_64-windows${WINEDLLPATH:+:$WINEDLLPATH}"
+    if "$WINE_BIN" --version >/dev/null 2>&1; then
+      printf '%s\n' "$WINE_BIN"
+      exit 0
+    fi
   fi
 fi
 

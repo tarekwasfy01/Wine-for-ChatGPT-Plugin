@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "portable-wine-runner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pure skills plugin that provides a prebuilt portable Wine x64 runtime for running Windows executables, with a local source-build fallback.",
   "extensions": {
     "com.openai": {
@@ -10,14 +10,20 @@
         "shortDescription": "Run Windows apps with Wine",
         "longDescription": "Provides a prebuilt Wine x64 runtime that ChatGPT or Codex can unpack into a local cache and use to run Windows executables without an MCP server. If the prebuilt runtime is incompatible with the host, the skill can build Wine locally from bundled Wine, Bison, and Flex source archives.",
         "category": "Developer Tools",
-        "capabilities": ["Interactive"],
+        "capabilities": [
+          "Interactive"
+        ],
         "defaultPrompt": [
           "Run this Windows executable with the portable Wine skill.",
           "Check whether Wine is available and prepare the bundled runtime.",
           "Use Wine to run this Windows x64 console program and show me the output."
         ],
         "logo": "./assets/icon.png",
-        "composerIcon": "./assets/icon.png"
+        "composerIcon": "./assets/icon.png",
+        "websiteURL": "https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/",
+        "supportURL": "https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html",
+        "privacyPolicyURL": "https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html",
+        "termsOfServiceURL": "https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html"
       }
     }
   }

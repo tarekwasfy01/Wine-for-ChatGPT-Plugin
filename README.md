@@ -11,3 +11,9 @@ The plugin itself has no network server and does not collect or transmit user da
 ## Public submission note
 
 The package contains the technical plugin metadata and icon. Public submission still requires the publisher to provide and verify its real developer identity plus public HTTPS URLs for website, support, privacy policy, and terms of service. Those values are intentionally not fabricated in this archive.
+
+
+## Website
+
+- Project: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/
+- Privacy / Support / Terms: https://tarekwasfy01.github.io/Wine-for-ChatGPT-Plugin/privacy.html
