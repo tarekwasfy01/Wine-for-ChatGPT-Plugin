@@ -50,6 +50,6 @@ if 'int use_dlltool = 1;' in s:
 PY
   export PATH="$(dirname "$FLEX_BIN"):$(dirname "$BISON_BIN"):$PATH"
   export FLEX="$FLEX_BIN" BISON="$BISON_BIN"
-  (cd "$WINE_BUILD" && "$WINE_SRC/configure" --enable-win64 --without-freetype --disable-tests --prefix="$PREFIX" && make -j2 && make install)
+  (cd "$WINE_BUILD" && "$WINE_SRC/configure" --enable-win64 --without-mingw --without-freetype --disable-tests --prefix="$PREFIX" && make -j2 && make install)
 fi
 if [[ -x "$PREFIX/bin/wine64" ]]; then printf '%s\n' "$PREFIX/bin/wine64"; else printf '%s\n' "$PREFIX/bin/wine"; fi

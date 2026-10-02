@@ -2,8 +2,8 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CACHE_BASE="${XDG_CACHE_HOME:-${HOME:-/tmp}/.cache}/portable-wine-runner"
-RUNTIME="$CACHE_BASE/runtime-v2"
-ARCHIVE="$ROOT/assets/runtime/wine-11-x64-runtime-v1.0.3.tar.xz"
+RUNTIME="$CACHE_BASE/runtime-v3"
+ARCHIVE="$ROOT/assets/runtime/wine-11-x64-runtime-v1.0.4.tar.xz"
 FORCE_BUILD=0
 [[ "${1:-}" == "--build" ]] && FORCE_BUILD=1
 mkdir -p "$CACHE_BASE"
